@@ -1,0 +1,91 @@
+<style>
+.sidebar {
+  background: linear-gradient(180deg, #f8fafc 80%, #e3eaf5 100%);
+  min-height: 100vh;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+}
+.sidebar .nav-link {
+  color: #2c3e50;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+.sidebar .nav-item {
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 900px) {
+  .sidebar { min-width: 100px; padding: 0.5rem 0.2rem; }
+  .sidebar .nav-link { font-size: 0.95rem; padding: 0.5rem 0.7rem; }
+}
+</style>
+<div class="d-flex">
+  <nav class="sidebar border-end p-3">
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2"><a class="nav-link" href="/hackathons">Hackathons</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" href="/teams">Équipes</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" href="/projects">Projets</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" href="/scores">Notes</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" href="/team-members">Membres d'équipe</a></li>
+    </ul>
+  </nav>
+  <div class="flex-grow-1">
+    <div class="container py-4">
+      <h2 class="mb-4 text-primary">Liste des hackathons</h2>
+      
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+      
+      <div class="table-responsive mb-4">
+        <table class="table table-hover align-middle">
+          <thead class="table-primary">
+            <tr>
+              <th>Nom</th>
+              <th>Description</th>
+              <th>Date de début</th>
+              <th>Date de fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let h of hackathons">
+              <td>{{h.name}}</td>
+              <td>{{h.description}}</td>
+              <td>{{h.start_date | date:'dd/MM/yyyy'}}</td>
+              <td>{{h.end_date | date:'dd/MM/yyyy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <form (ngSubmit)="addHackathon()" class="card p-4 shadow-sm mb-3">
+        <h5 class="mb-3">Ajouter un hackathon</h5>
+        <div class="row g-3 align-items-end">
+          <div class="col-md-3">
+            <label class="form-label">Nom *</label>
+            <input [(ngModel)]="newHackathon.name" name="name" class="form-control" placeholder="Nom du hackathon" required />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Description</label>
+            <input [(ngModel)]="newHackathon.description" name="description" class="form-control" placeholder="Description de l'événement" />
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Début *</label>
+            <input [(ngModel)]="newHackathon.start_date" name="start_date" type="date" class="form-control" required />
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Fin *</label>
+            <input [(ngModel)]="newHackathon.end_date" name="end_date" type="date" class="form-control" required />
+          </div>
+          <div class="col-md-1 d-grid">
+            <button type="submit" class="btn btn-success" [disabled]="loading">
+              <span *ngIf="loading">⏳</span>
+              <span *ngIf="!loading">Ajouter</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

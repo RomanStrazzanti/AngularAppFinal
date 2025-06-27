@@ -1,0 +1,63 @@
+<div class="d-flex">
+  <nav class="sidebar border-end p-3">
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/hackathons" routerLinkActive="active">Hackathons</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/teams" routerLinkActive="active">Équipes</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/projects" routerLinkActive="active">Projets</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/scores" routerLinkActive="active">Notes</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/team-members" routerLinkActive="active">Membres d'équipe</a></li>
+    </ul>
+  </nav>
+  <div class="flex-grow-1">
+    <div class="container py-4">
+      <h2 class="mb-4 text-primary">Liste des étudiants</h2>
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+      <form (ngSubmit)="onSearch()" class="mb-3">
+        <div class="input-group">
+          <input [(ngModel)]="search" name="search" class="form-control" placeholder="Rechercher un étudiant..." />
+          <button class="btn btn-primary" type="submit">Rechercher</button>
+        </div>
+      </form>
+      <div class="table-responsive mb-4">
+        <table class="table table-hover align-middle">
+          <thead class="table-primary">
+            <tr>
+              <th>Nom</th>
+              <th>Genre</th>
+              <th>Âge</th>
+              <th>Niveau</th>
+              <th>Maths</th>
+              <th>Lecture</th>
+              <th>Écriture</th>
+              <th>Présence</th>
+              <th>Parents</th>
+              <th>Heures</th>
+              <th>Internet</th>
+              <th>Déjeuner</th>
+              <th>Extras</th>
+              <th>Résultat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of students">
+              <td>{{s.name}}</td>
+              <td>{{s.gender}}</td>
+              <td>{{s.age}}</td>
+              <td>{{s.grade_level}}</td>
+              <td>{{s.math_score}}</td>
+              <td>{{s.reading_score}}</td>
+              <td>{{s.writing_score}}</td>
+              <td>{{s.attendance_rate}}%</td>
+              <td>{{s.parent_education}}</td>
+              <td>{{s.study_hours}}</td>
+              <td>{{s.internet_access}}</td>
+              <td>{{s.lunch_type}}</td>
+              <td>{{s.extra_activities}}</td>
+              <td>{{s.final_result}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.sidebar {
+  background: linear-gradient(180deg, #f8fafc 80%, #e3eaf5 100%);
+  min-height: 100vh;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+}
+.sidebar .nav-link {
+  color: #2c3e50;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+.sidebar .nav-item {
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 900px) {
+  .sidebar { min-width: 100px; padding: 0.5rem 0.2rem; }
+  .sidebar .nav-link { font-size: 0.95rem; padding: 0.5rem 0.7rem; }
+}
