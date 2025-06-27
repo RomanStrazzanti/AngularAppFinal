@@ -50,7 +50,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let p of projects">
-              <td>{{p.name}}</td>
+              <td>{{p.name}} <button class="btn btn-link btn-sm p-0 ms-2" (click)="selectedProject = p">Détails</button></td>
               <td>{{p.description}}</td>
               <td>{{getHackathonName(p.hackathon_id)}}</td>
               <td>{{getUserName(p.created_by)}}</td>
@@ -92,6 +92,25 @@
           </div>
         </div>
       </form>
+      
+      <!-- Modal Détail Projet -->
+<div *ngIf="selectedProject" class="modal-backdrop fade show" style="z-index: 1050;"></div>
+<div *ngIf="selectedProject" class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.2);z-index:1060;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Détails du projet</h5>
+        <button type="button" class="btn-close" (click)="selectedProject = undefined"></button>
+      </div>
+      <div class="modal-body">
+        <strong>Nom :</strong> {{selectedProject.name}}<br>
+        <strong>Description :</strong> {{selectedProject.description}}<br>
+        <strong>Hackathon :</strong> {{getHackathonName(selectedProject.hackathon_id)}}<br>
+        <strong>Créé par :</strong> {{getUserName(selectedProject.created_by)}}<br>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </div>

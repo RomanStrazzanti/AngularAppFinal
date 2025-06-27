@@ -19,6 +19,7 @@ export class ProjectsComponent {
   error = '';
   newProject: Project = { name: '', description: '', hackathon_id: 0, created_by: '' };
   loading = false;
+  selectedProject: Project | undefined;
 
   constructor(
     private projectsService: ProjectsService,

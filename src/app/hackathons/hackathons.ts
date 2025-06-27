@@ -15,6 +15,7 @@ export class HackathonsComponent {
   error = '';
   newHackathon: Hackathon = { name: '', description: '', start_date: '', end_date: '' };
   loading = false;
+  selectedHackathon?: Hackathon;
 
   constructor(private hackathonsService: HackathonsService) {
     this.loadHackathons();
